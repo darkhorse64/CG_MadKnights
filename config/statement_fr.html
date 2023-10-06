@@ -1,0 +1,134 @@
+<div id="statement_back" class="statement_back" style="display:none"></div>
+  <div class="statement-body">
+    <!-- GOAL -->
+    <div class="statement-section statement-goal">
+      <h1>
+        <span class="icon icon-goal">&nbsp;</span>
+        <span>Présentation du jeu</span>
+      </h1>
+      <div class="statement-goal-content">
+        <p>Ce jeu est une implémentation du jeu de plateau <a href="https://github.com/udacity/cd0349-adversarial-search">Knight Isolation</a> créé par Udacity.</p>
+        <p>Le code source est accessible <a href="https://github.com/darkhorse64/CG_MadKnights">ici</a>.</p>
+      </div>
+    </div>
+    <!-- RULES -->
+    <div class="statement-section statement-rules">
+      <h1>
+          <span class="icon icon-rules">&nbsp;</span>
+          <span>Règles</span>
+      </h1>
+      <div class="statement-rules-content">
+          <p>Le jeu se déroule sur un échiquier de 8x8 cases avec deux joueurs. Chaque joueur dispose d'une unique pièce: un Cavalier (une des pièces du jeu d'Echecs). Le but du jeu est d'"isoler" le Cavalier adverse.</p>
+          <p>Quand un Cavalier occupe une case, celle-ci devient indisponible pour le reste de la partie. Les cases libres accessibles directement par un Cavalier sont des "libertés". Le premier joueur dont la pièce n'a plus de libertés perd la partie et son adversaire est déclaré vainqueur.</p>          
+         <p>La position initiale des pièces est aléatoire mais toujours symmétrique par rapport au centre de l'échiquier.</p>
+          <strong>Comment jouer: </strong>
+          <p></p>
+          Les Blancs commencent la partie. Chaque joueur bouge sa pièce à son tour sur une case disponible, en respectant les règles de déplacement d'un Cavalier aux Echecs.
+          <p>La partie est terminée quand un joueur n'a plus de coups disponibles.</p> 
+          <strong>Fin d'un tour de jeu: </strong>
+          <ul>
+            <li>Le robot doit communiquer les coordonnées de la destination de son Cavalier. Les coordonnées sont exprimées en notation échiquéenne, par exemple "<const>e3</const>".</li>
+          </ul>
+          <strong>En cas de coup erroné d'un joueur: </strong><br>
+          <ul>
+              <li>Si la position d'arrivée est en dehors du plateau,</li>
+              <li>Si la case d'arrivée n'est pas disponible,</li>
+              <li>Si la case d'arrivée n'est pas accessible par un mouvement de Cavalier,</li>
+          </ul>
+          <p>la partie se termine et le joueur perd.</p>
+    </div>
+  </div>
+
+  <!-- EXPERT RULES -->
+  <div class="statement-section statement-expertrules">
+    <h1>
+      <span class="icon icon-expertrules">&nbsp;</span>
+      <span>Règles pour les experts</span>
+    </h1>
+    <div class="statement-expert-rules-content">
+      <li>Le jeu est délibérément très simple pour que vous puissiez vous concentrer sur les algorithmes de recherche.</li>
+    </div>
+  </div>
+  
+  <!-- Victory conditions -->
+  <div class="statement-victory-conditions">
+      <div class="icon victory"></div>
+      <div class="blk">
+          <div class="title">Conditions de victoire</div>
+          <div class="text">
+              <ul style="padding-bottom: 0;">
+                  <li>Etre le dernier à bouger.</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <!-- Lose conditions -->
+  <div class="statement-lose-conditions">
+      <div class="icon lose"></div>
+      <div class="blk">
+          <div class="title">Conditions de défaite</div>
+          <div class="text">
+              <ul style="padding-bottom: 0;">
+                  <li>Ne plus avoir de coups disponibles.</li>
+                  <li>Ne pas répondre dans le temps imparti.</li>
+                  <li>Envoyer une sortie non conforme ou illégale.</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <!-- PROTOCOL -->
+  <div class="statement-section statement-protocol">
+      <h1>
+      <span class="icon icon-protocol">&nbsp;</span>
+      <span>Entrées/sorties du jeu</span>
+  </h1>
+
+    <!-- Protocol block -->
+    <div class="blk">
+      <div class="title">Entrées initiales</div>
+      <div class="text">
+          <span class="statement-lineno">Une ligne: <var>color</var></span>: la couleur de vos pions (<const>w</const>: blancs, <const>b</const>:noirs).
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="title">Entrées pour chaque tour de jeu</div>
+      <div class="text">
+        <span class="statement-lineno"><var>8</var> premières lignes</span>: <var>line</var>: une chaîne de caractères représentant une ligne du plateau, de haut en bas. (<const>.</const>: vide, <const>w</const>: pion blanc, <const>b</const>: pion noir).
+        <br>
+        <span class="statement-lineno">Ligne suivante</span>: <var>lastAction</var>: le dernier coup joué par l'adversaire ("<const>null</const>" si c'est le premier tour).
+        </br>
+        <br>
+         <span class="statement-lineno">Ligne suivante</span>: <var>moveCount</var>: le nombre de coups légaux pour ce tour.
+        </br>
+        <br>
+          <span class="statement-lineno"><var>moveCount</var> lignes suivantes</span>: <var>move</var>: une chaîne de caractères représentant un coup légal.
+        </br>      
+      </div>
+    </div>
+
+    <!-- Protocol block -->
+    <div class="blk">
+      <div class="title">Sorties</div>
+      <div class="text">
+         <span class="statement-lineno">Une seule ligne</span> contenant les coordonnées d'arrivée du Cavalier, par exemple "<const>e3</const>".<br>
+          <ul>
+              <li>Vous pouvez afficher un (court) message dans le cartouche de votre joueur en ajoutant un espace après le coup suivi du texte de votre message, par exemple "<const>e3 message</const>".</li>
+              <li>Vous pouvez jouer un coup aléatoirement en écrivant "<const>random</const>" à la place de votre coup. Ca n'a vraiment d'utilité que pour créer facilement un robot fonctionnel à l'aide du générateur de code.</li>
+          </ul>
+        <br>
+      </div>
+    </div>
+
+    <!-- Protocol block -->
+    <div class="blk">
+      <div class="title">Contraintes</div>
+        Le temps de réponse au premier tour est ≤
+        <const>1000</const> ms.
+        <br>Le temps de réponse pour les tours suivants est ≤
+        <const>100</const> ms.
+      </div>
+  </div>
+</div>

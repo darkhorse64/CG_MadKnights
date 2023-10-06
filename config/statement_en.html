@@ -1,0 +1,135 @@
+<div id="statement_back" class="statement_back" style="display:none"></div>
+  <div class="statement-body">
+    <!-- GOAL -->
+    <div class="statement-section statement-goal">
+      <h1>
+        <span class="icon icon-goal">&nbsp;</span>
+        <span>The Game</span>
+      </h1>
+      <div class="statement-goal-content">
+        <p>This is a implementation of the board game <a href="https://github.com/udacity/cd0349-adversarial-search">Knight Isolation</a>, a Udacity model game.</p>
+        <p>Click <a href="https://github.com/darkhorse64/CG_MadKnights">here</a> for the referee.</p>
+      </div>
+    </div>
+    <!-- RULES -->
+    <div class="statement-section statement-rules">
+      <h1>
+          <span class="icon icon-rules">&nbsp;</span>
+          <span>Rules</span>
+      </h1>
+      <div class="statement-rules-content">
+          <p>The game is played on a 8x8 chess board with two players. Each player has one single piece: a chess knight. The goal of the game is to "isolate" the opponent knight.</p>
+          <p>Whenever a knight occupies a square, that square becomes unavailable for the remainder of the game. An open square available for a knight to move into is called a "liberty". The first player with no remaining liberties for their piece loses the game, and their opponent is declared the winner.</p>          
+         <p>The initial position of the pieces is random but symmetric with respect to the board center.</p>
+
+          <strong>How to play: </strong>
+          <p></p>
+          <p>White starts the game. Each player alternate taking turns moving their knight to an available square. Knights can move to any open square that is 2-rows and 1-column or 2-columns and 1-row away from their current position on the board.</p>
+          <p>The game ends when one player has no available moves.</p>
+          <strong>Ending a turn: </strong>
+          <ul>
+            <li>A bot must output the destination coordinates of its piece. Coordinates are expressed in chess notation e.g. "<const>e3</const>"</li>
+          </ul>
+          <strong>Wrong output: </strong><br>
+          <ul>
+              <li>If the destination sqaure are outside of the board,</li>
+              <li>If the destination square is not available,</li>
+              <li>If the move is not a knight move,</li>
+          </ul>
+          <p>the game will end and the other player will win.</p>
+    </div>
+  </div>
+
+  <!-- EXPERT RULES -->
+  <div class="statement-section statement-expertrules">
+    <h1>
+      <span class="icon icon-expertrules">&nbsp;</span>
+      <span>Expert Rules</span>
+    </h1>
+    <div class="statement-expert-rules-content">
+      <li>The game has been deliberately designed to be simple. Focus on search algorithms !</li>
+    </div>
+  </div>
+  
+  <!-- Victory conditions -->
+  <div class="statement-victory-conditions">
+      <div class="icon victory"></div>
+      <div class="blk">
+          <div class="title">Victory Conditions</div>
+          <div class="text">
+              <ul style="padding-bottom: 0;">
+                  <li>Be the last to move.</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <!-- Lose conditions -->
+  <div class="statement-lose-conditions">
+      <div class="icon lose"></div>
+      <div class="blk">
+          <div class="title">Loss Conditions</div>
+          <div class="text">
+              <ul style="padding-bottom: 0;">
+                  <li>You cannot move your knight.</li>
+                  <li>You do not respond in time.</li>
+                  <li>You output an unrecognized command or an illegal move.</li>
+             </ul>
+          </div>
+      </div>
+  </div>
+
+  <!-- PROTOCOL -->
+  <div class="statement-section statement-protocol">
+      <h1>
+      <span class="icon icon-protocol">&nbsp;</span>
+      <span>Game Input/Output</span>
+  </h1>
+
+    <!-- Protocol block -->
+    <div class="blk">
+      <div class="title">Initial input</div>
+      <div class="text">
+          <span class="statement-lineno">One line</span>: <var>color</var></span>: the color of your unique piece (<const>w</const>: white, <const>b</const>: black).
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="title">Input for one game turn</div>
+      <div class="text">
+        <span class="statement-lineno">First <const>8</const> lines</span>: <var>line</var>: a string of characters representing one horizontal row of the grid, top to bottom. (<const>.</const>: empty, <const>#</const>: blocked, <const>w</const>: white, <const>b</const>: black).
+        <br>
+        <span class="statement-lineno">Next line: <var>lastMove</var></span>: the last move by the opponent ("<const>null</const>" if it's the first turn).
+        </br>
+        <br>
+         <span class="statement-lineno">Next line: <var>moveCount</var></span>: the number of legal moves for this turn.
+        </br>
+        <br>
+          <span class="statement-lineno">Next <var>moveCount</var> lines</span>: <var>move</var>: a string of characters representing a legal move.
+        </br>      
+          </div>
+    </div>
+
+    <!-- Protocol block -->
+    <div class="blk">
+      <div class="title">Output</div>
+      <div class="text">
+         <span class="statement-lineno">A single line</span> containing the coordinates where you want to move to, e.g. "<const>e3</const>.<br>
+          <ul>
+              <li>You can display a (short) comment in the viewer by adding a space after the move and writing its content, e.g. "<const>e3 message</const>".</li>
+              <li>You can play a random move by outputting "<const>random</const>" instead of a move. This is admittedly only useful for stub code generation.</li>
+          </ul>
+        <br>
+      </div>
+    </div>
+
+    <!-- Protocol block -->
+    <div class="blk">
+      <div class="title">Constraints</div>
+        Response time first turn is ≤
+        <const>1000</const> ms.
+        <br>Response time per turn is ≤
+        <const>100</const> ms.
+      </div>
+  </div>
+</div>
