@@ -1,4 +1,4 @@
-package com.codingame.game.viewer;
+package com.codingame.game.ui;
 
 import com.codingame.game.engine.Board;
 import com.codingame.gameengine.module.entities.GraphicEntityModule;

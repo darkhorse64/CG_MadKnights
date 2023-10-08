@@ -1,4 +1,4 @@
-package com.codingame.game.viewer;
+package com.codingame.game.ui;
 
 import com.codingame.game.engine.Piece;
 import com.codingame.gameengine.module.entities.Sprite;

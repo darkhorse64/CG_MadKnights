@@ -1,7 +1,7 @@
 package com.codingame.game;
 
 import com.codingame.game.engine.*;
-import com.codingame.game.viewer.Viewer;
+import com.codingame.game.ui.Viewer;
 import com.codingame.gameengine.core.AbstractPlayer;
 import com.codingame.gameengine.core.AbstractReferee;
 import com.codingame.gameengine.core.GameManager;
