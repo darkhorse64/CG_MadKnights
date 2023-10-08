@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f3833457-5f9f-4ebb-8ba6-7021dd4a7dc5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/statement_fr.html" beforeDir="false" afterPath="$PROJECT_DIR$/config/statement_fr.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/viewer/BoardUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/ui/BoardUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/viewer/PieceUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/ui/PieceUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/viewer/PlayerUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/ui/PlayerUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/viewer/Viewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/ui/Viewer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
