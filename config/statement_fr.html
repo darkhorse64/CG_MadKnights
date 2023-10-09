@@ -27,7 +27,7 @@
           <p>La partie est terminée quand un joueur n'a plus de coups disponibles.</p> 
           <strong>Fin d'un tour de jeu: </strong>
           <ul>
-            <li>Le robot doit communiquer les coordonnées de la destination de son Cavalier. Les coordonnées sont exprimées en notation échiquéenne, par exemple "<const>e3</const>".</li>
+            <li>Le robot doit communiquer les coordonnées de la destination de son Cavalier. Les coordonnées sont exprimées en notation échiquéenne, par exemple <const>e3</const>.</li>
           </ul>
           <strong>En cas de coup erroné d'un joueur: </strong><br>
           <ul>
@@ -98,7 +98,7 @@
       <div class="text">
         <span class="statement-lineno"><var>8</var> premières lignes</span>: <var>line</var>: une chaîne de caractères représentant une ligne du plateau, de haut en bas. (<const>.</const>: vide, <const>w</const>: pion blanc, <const>b</const>: pion noir).
         <br>
-        <span class="statement-lineno">Ligne suivante</span>: <var>lastAction</var>: le dernier coup joué par l'adversaire ("<const>null</const>" si c'est le premier tour).
+        <span class="statement-lineno">Ligne suivante</span>: <var>lastAction</var>: le dernier coup joué par l'adversaire (<const>null</const> si c'est le premier tour).
         </br>
         <br>
          <span class="statement-lineno">Ligne suivante</span>: <var>moveCount</var>: le nombre de coups légaux pour ce tour.
@@ -113,10 +113,10 @@
     <div class="blk">
       <div class="title">Sorties</div>
       <div class="text">
-         <span class="statement-lineno">Une seule ligne</span> contenant les coordonnées d'arrivée du Cavalier, par exemple "<const>e3</const>".<br>
+         <span class="statement-lineno">Une seule ligne</span> contenant les coordonnées d'arrivée du Cavalier, par exemple <const>e3</const>.<br>
           <ul>
-              <li>Vous pouvez afficher un (court) message dans le cartouche de votre joueur en ajoutant un espace après le coup suivi du texte de votre message, par exemple "<const>e3 message</const>".</li>
-              <li>Vous pouvez jouer un coup aléatoirement en écrivant "<const>random</const>" à la place de votre coup. Ca n'a vraiment d'utilité que pour créer facilement un robot fonctionnel à l'aide du générateur de code.</li>
+              <li>Vous pouvez afficher un (court) message dans le cartouche de votre joueur en ajoutant un espace après le coup suivi du texte de votre message, par exemple <const>e3 message</const>.</li>
+              <li>Vous pouvez jouer un coup aléatoirement (choisi parmi les coups disponibles) en écrivant <const>random</const> à la place de votre coup.</li>
           </ul>
         <br>
       </div>

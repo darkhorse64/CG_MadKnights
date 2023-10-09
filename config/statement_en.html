@@ -7,7 +7,7 @@
         <span>The Game</span>
       </h1>
       <div class="statement-goal-content">
-        <p>This is a implementation of the board game <a href="https://github.com/udacity/cd0349-adversarial-search">Knight Isolation</a>, a Udacity model game.</p>
+        <p>This is an implementation of the board game <a href="https://github.com/udacity/cd0349-adversarial-search">Knight Isolation</a>, a Udacity model game.</p>
         <p>Click <a href="https://github.com/darkhorse64/CG_MadKnights">here</a> for the referee.</p>
       </div>
     </div>
@@ -18,9 +18,9 @@
           <span>Rules</span>
       </h1>
       <div class="statement-rules-content">
-          <p>The game is played on a 8x8 chess board with two players. Each player has one single piece: a chess knight. The goal of the game is to "isolate" the opponent knight.</p>
+          <p>The game is played on a 8x8 chess board with two players. Each player has one single piece: a knight. The goal of the game is to "isolate" the opponent knight.</p>
           <p>Whenever a knight occupies a square, that square becomes unavailable for the remainder of the game. An open square available for a knight to move into is called a "liberty". The first player with no remaining liberties for their piece loses the game, and their opponent is declared the winner.</p>          
-         <p>The initial position of the pieces is random but symmetric with respect to the board center.</p>
+         <p>The initial positions of the pieces are random but symmetric with respect to the board center.</p>
 
           <strong>How to play: </strong>
           <p></p>
@@ -28,11 +28,11 @@
           <p>The game ends when one player has no available moves.</p>
           <strong>Ending a turn: </strong>
           <ul>
-            <li>A bot must output the destination coordinates of its piece. Coordinates are expressed in chess notation e.g. "<const>e3</const>"</li>
+            <li>A bot must output the destination coordinates of its piece. Coordinates are expressed in chess notation e.g. <const>e3</const></li>
           </ul>
           <strong>Wrong output: </strong><br>
           <ul>
-              <li>If the destination square are outside of the board,</li>
+              <li>If the destination square is outside of the board,</li>
               <li>If the destination square is not available,</li>
               <li>If the move is not a knight move,</li>
           </ul>
@@ -99,7 +99,7 @@
       <div class="text">
         <span class="statement-lineno">First <const>8</const> lines</span>: <var>line</var>: a string of characters representing one horizontal row of the grid, top to bottom. (<const>.</const>: empty, <const>#</const>: blocked, <const>w</const>: white, <const>b</const>: black).
         <br>
-        <span class="statement-lineno">Next line: <var>lastMove</var></span>: the last move by the opponent ("<const>null</const>" if it's the first turn).
+        <span class="statement-lineno">Next line: <var>lastMove</var></span>: the last move by the opponent (<const>null</const> if it's the first turn).
         </br>
         <br>
          <span class="statement-lineno">Next line: <var>moveCount</var></span>: the number of legal moves for this turn.
@@ -114,10 +114,10 @@
     <div class="blk">
       <div class="title">Output</div>
       <div class="text">
-         <span class="statement-lineno">A single line</span> containing the coordinates where you want to move to, e.g. "<const>e3</const>.<br>
+         <span class="statement-lineno">A single line</span> containing the coordinates where you want to move to, e.g. <const>e3</const>.<br>
           <ul>
-              <li>You can display a (short) comment in the viewer by adding a space after the move and writing its content, e.g. "<const>e3 message</const>".</li>
-              <li>You can play a random move by outputting "<const>random</const>" instead of a move. This is admittedly only useful for stub code generation.</li>
+              <li>You can display a (short) comment in the viewer by adding a space after the move and writing its content, e.g. <const>e3 message</const>.</li>
+              <li>You can play a random move (chosen amongst all legal moves) by outputting <const>random</const> instead of specific coordinates.</li>
           </ul>
         <br>
       </div>
