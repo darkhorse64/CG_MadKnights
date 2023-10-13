@@ -6,6 +6,7 @@ public class Main {
 
         gameRunner.addAgent(Agent1.class);
         gameRunner.addAgent(Agent1.class);
+        gameRunner.addAgent(Agent1.class);
 
         gameRunner.start();
     }

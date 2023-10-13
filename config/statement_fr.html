@@ -7,7 +7,7 @@
         <span>Présentation du jeu</span>
       </h1>
       <div class="statement-goal-content">
-        <p>Ce jeu est une implémentation du jeu de plateau <a href="https://github.com/udacity/cd0349-adversarial-search">Knight Isolation</a> créé par Udacity.</p>
+        <p>Ce jeu est une adaptation du jeu de plateau <a href="https://github.com/udacity/cd0349-adversarial-search">Knight Isolation</a> créé par Udacity.</p>
         <p>Le code source est accessible <a href="https://github.com/darkhorse64/CG_MadKnights">ici</a>.</p>
       </div>
     </div>
@@ -18,13 +18,13 @@
           <span>Règles</span>
       </h1>
       <div class="statement-rules-content">
-          <p>Le jeu se déroule sur un échiquier de 8x8 cases avec deux joueurs. Chaque joueur dispose d'une unique pièce: un Cavalier (une des pièces du jeu d'Echecs). Le but du jeu est d'"isoler" le Cavalier adverse.</p>
-          <p>Quand un Cavalier occupe une case, celle-ci devient indisponible pour le reste de la partie. Les cases libres accessibles directement par un Cavalier sont des "libertés". Le premier joueur dont la pièce n'a plus de libertés perd la partie et son adversaire est déclaré vainqueur.</p>          
-         <p>La position initiale des pièces est aléatoire mais toujours symétrique par rapport au centre de l'échiquier.</p>
+          <p>Le jeu se déroule sur un échiquier de 8x8 cases avec trois joueurs: Rouge, Vert , Bleu. Chaque joueur dispose d'une unique pièce: un Cavalier (une des pièces du jeu d'Echecs). Le but du jeu est d'"isoler" le Cavalier adverse.</p>
+          <p>Quand un Cavalier occupe une case, celle-ci devient indisponible pour le reste de la partie. Les cases libres accessibles directement par un Cavalier sont des "libertés". Un joueur dont la pièce n'a plus de libertés pendant son tour quitte la partie. Le dernier joueur à bouger gagne donc la partie.</p>          
+         <p>La position initiale des pièces est aléatoire.</p>
           <strong>Comment jouer: </strong>
           <p></p>
-          Les Blancs commencent la partie. Chaque joueur bouge sa pièce à son tour sur une case disponible, en respectant les règles de déplacement d'un Cavalier aux Echecs.
-          <p>La partie est terminée quand un joueur n'a plus de coups disponibles.</p> 
+          Rouge commence la partie, puis Vert, puis Bleu. Chaque joueur bouge sa pièce à son tour sur une case disponible, en respectant les règles de déplacement d'un Cavalier aux Echecs.
+          <p>La partie est terminée lorsqu'il ne reste qu'un seul joueur.</p> 
           <strong>Fin d'un tour de jeu: </strong>
           <ul>
             <li>Le robot doit communiquer les coordonnées de la destination de son Cavalier. Les coordonnées sont exprimées en notation échiquéenne, par exemple <const>e3</const>.</li>
@@ -35,7 +35,7 @@
               <li>Si la case d'arrivée n'est pas disponible,</li>
               <li>Si la case d'arrivée n'est pas accessible par un mouvement de Cavalier,</li>
           </ul>
-          <p>la partie se termine et le joueur perd.</p>
+          <p>le joueur quitte la partie.</p>
     </div>
   </div>
 
@@ -89,17 +89,14 @@
     <div class="blk">
       <div class="title">Entrées initiales</div>
       <div class="text">
-          <span class="statement-lineno">Une ligne: <var>color</var></span>: la couleur de vos pions (<const>w</const>: blancs, <const>b</const>:noirs).
+          <span class="statement-lineno">Une ligne: <var>color</var></span>: la couleur de votre piece (<const>r</const>: rouge, <const>g</const>:vert, <const>b</const>:bleu).
       </div>
     </div>
 
     <div class="blk">
       <div class="title">Entrées pour chaque tour de jeu</div>
       <div class="text">
-        <span class="statement-lineno"><var>8</var> premières lignes</span>: <var>line</var>: une chaîne de caractères représentant une ligne du plateau, de haut en bas. (<const>.</const>: vide, <const>w</const>: pion blanc, <const>b</const>: pion noir).
-        <br>
-        <span class="statement-lineno">Ligne suivante</span>: <var>lastAction</var>: le dernier coup joué par l'adversaire (<const>null</const> si c'est le premier tour).
-        </br>
+        <span class="statement-lineno"><var>8</var> premières lignes</span>: <var>line</var>: une chaîne de caractères représentant une ligne du plateau, de haut en bas. (<const>.</const>: vide, <const>#</const>: indisponible, <const>r</const>: rouge, <const>g</const>: vert, <const>b</const>: bleu).
         <br>
          <span class="statement-lineno">Ligne suivante</span>: <var>moveCount</var>: le nombre de coups légaux pour ce tour.
         </br>

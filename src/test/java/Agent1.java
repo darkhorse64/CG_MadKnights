@@ -14,9 +14,6 @@ public class Agent1 {
                 System.err.println(line);
             }
 
-            String last_action = in.next();
-            System.err.println(last_action);
-
             int actions = in.nextInt();
             System.err.println(actions);
             for (int y = 0; y < actions; ++y) {

@@ -41,7 +41,7 @@ public class Viewer {
         columns = board.columns();
 
         displayBoard = new BoardUI(graphics, board);
-        players = new PlayerUI[2];
+        players = new PlayerUI[gameManager.getPlayerCount()];
         lastActions = new Rectangle[3];
         pieces = new ArrayList<>();
 
@@ -61,15 +61,18 @@ public class Viewer {
             int x = piece.getX();
             int y = piece.getY();
             pieces.add(new PieceUI(piece, graphics.createSprite()
-                    .setImage(piece.owner == 0 ? "w.png" : "b.png")
+                    .setImage(String.valueOf(piece.owner) + ".png")
                     .setBaseWidth(circleRadius * 2)
                     .setBaseHeight(circleRadius * 2)
                     .setX(displayBoard.rectangles[y][x].getX() + gap)
                     .setY(displayBoard.rectangles[y][x].getY() + gap)));
         }
 
-        for (int i = 0; i < 2; ++i) {
-            players[i] = new PlayerUI(this, gameManager.getPlayer(i));
+        int[] startx = {50,50,graphics.getWorld().getWidth() - 350};
+        int[] starty = {50, graphics.getWorld().getHeight() - 510, graphics.getWorld().getHeight()/2 - 230};
+
+        for (int i = 0; i < gameManager.getPlayerCount(); ++i) {
+            players[i] = new PlayerUI(this, gameManager.getPlayer(i), startx[i], starty[i]);
         }
 
         for (int i = 0; i < 3; ++i) {
@@ -85,13 +88,11 @@ public class Viewer {
             graphics.commitEntityState(0.8, pieces.get(i).sprite);
         }
 
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < gameManager.getPlayerCount(); ++i) {
             players[i].msg.setText("");
             players[i].action.setText("");
+            players[i].piece.setImage(String.valueOf(i) + ".png");
         }
-
-        players[0].piece.setImage("w.png");
-        players[1].piece.setImage("b.png");
     }
 
     public void applyAction(Action action) {

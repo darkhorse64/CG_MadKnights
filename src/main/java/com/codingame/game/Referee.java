@@ -28,11 +28,12 @@ public class Referee extends AbstractReferee {
     Player currentPlayer;
     String lastAction = "null";
     Random rand;
+    int score = 0;
 
     @Override
     public void init() {
         rand = new Random(gameManager.getSeed());
-        board = new Board(gameManager.getSeed());
+        board = new Board(gameManager.getPlayerCount(), gameManager.getSeed());
         viewer = new Viewer(graphics, board, gameManager, toggleModule);
         gameManager.setMaxTurns(maxTurns);
         gameManager.setFirstTurnMaxTime(firstTurnMaxTime);
@@ -45,92 +46,95 @@ public class Referee extends AbstractReferee {
     @Override
     public void gameTurn(int turn) {
 
-        ArrayList<Action> actions = board.getLegalActions(currentPlayer.getIndex());
-
         Player player = gameManager.getPlayer(currentPlayer.getIndex());
 
-        try {
-            sendInputs(turn);
-            player.execute();
+        if (gameManager.getActivePlayers().size() == 1) {
+            gameManager.addToGameSummary(gameManager.formatErrorMessage(player.getNicknameToken() + " wins!"));
+            gameManager.addTooltip(player, player.getNicknameToken() + " wins");
+            player.setScore(score++);
+            gameManager.endGame();
+            return;
+        }
 
-            String output = player.getOutputs().get(0);
-            String comment = null;
-            // Split comment from output.
-            int spaceIndex = output.indexOf(' ');
-            if (spaceIndex != -1) {
-                comment = output.substring(spaceIndex + 1);
-                if (comment.length() > maxCommentLength)
-                    comment = comment.substring(0, maxCommentLength);
-                output = output.substring(0, spaceIndex);
-            }
+        ArrayList<Action> actions = board.getLegalActions(currentPlayer.getIndex());
 
-            if (comment != null) {
-                 viewer.players[player.getIndex()].msg.setText(comment);
-            } else {
-                viewer.players[player.getIndex()].msg.setText("");
-            }
+        if (actions.isEmpty()) {
+            player.setScore(score++);
+            gameManager.addToGameSummary(gameManager.formatErrorMessage(player.getNicknameToken() + " has no moves."));
+            player.deactivate(player.getNicknameToken() + " has no moves");
+        } else {
+            try {
+                sendInputs(turn);
+                player.execute();
 
-            boolean found = false;
+                String output = player.getOutputs().get(0);
+                String comment = null;
+                // Split comment from output.
+                int spaceIndex = output.indexOf(' ');
+                if (spaceIndex != -1) {
+                    comment = output.substring(spaceIndex + 1);
+                    if (comment.length() > maxCommentLength)
+                        comment = comment.substring(0, maxCommentLength);
+                    output = output.substring(0, spaceIndex);
+                }
 
-            if (output.equals("random")) {
-                found = true;
-                int a = rand.nextInt(actions.size());
+                if (comment != null) {
+                    viewer.players[player.getIndex()].msg.setText(comment);
+                } else {
+                    viewer.players[player.getIndex()].msg.setText("");
+                }
 
-                lastAction = actions.get(a).toString();
+                boolean found = false;
 
-                viewer.applyAction(actions.get(a));
-                board.applyAction(actions.get(a));
+                if (output.equals("random")) {
+                    found = true;
+                    int a = rand.nextInt(actions.size());
 
-            } else {
-                for (Action action : actions) {
-                    String s = action.toString();
-                    if (output.startsWith(s)) {
-                        lastAction = s;
-                        viewer.applyAction(action);
-                        board.applyAction(action);
-                        found = true;
-                        break;
+                    lastAction = actions.get(a).toString();
+
+                    viewer.applyAction(actions.get(a));
+                    board.applyAction(actions.get(a));
+
+                } else {
+                    for (Action action : actions) {
+                        String s = action.toString();
+                        if (output.startsWith(s)) {
+                            lastAction = s;
+                            viewer.applyAction(action);
+                            board.applyAction(action);
+                            found = true;
+                            break;
+                        }
                     }
                 }
+
+                if (!found) {
+                    throw new InvalidActionException(String.format("Action %s was not valid!", actions.toString()));
+                }
+
+                viewer.players[player.getIndex()].action.setText(lastAction);
+                graphics.commitEntityState(0, viewer.players[player.getIndex()].action, viewer.players[player.getIndex()].msg);
+
+            } catch (AbstractPlayer.TimeoutException e) {
+                gameManager.addToGameSummary(GameManager.formatErrorMessage(player.getNicknameToken() + " did not output in time!"));
+                player.deactivate(player.getNicknameToken() + " timeout");
+                player.setScore(-1);
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException | InvalidActionException e) {
+                gameManager.addToGameSummary(GameManager.formatErrorMessage(player.getNicknameToken() + " made an invalid action!"));
+                player.deactivate(player.getNicknameToken() + " made an invalid action");
+                player.setScore(-1);
             }
-
-            if(!found) {
-                throw new InvalidActionException(String.format("Action %s was not valid!", actions.toString()));
-            }
-
-            viewer.players[player.getIndex()].action.setText(lastAction);
-            viewer.players[player.getIndex()].frame.setVisible(true);
-            viewer.players[player.getIndex() ^1].frame.setVisible(false);
-            graphics.commitEntityState(0, viewer.players[player.getIndex()].action, viewer.players[player.getIndex()].msg);
-
-        } catch (AbstractPlayer.TimeoutException e) {
-            gameManager.addToGameSummary(GameManager.formatErrorMessage(player.getNicknameToken() + " did not output in time!"));
-            player.deactivate(player.getNicknameToken() + " timeout.");
-            player.setScore(-1);
-            gameManager.endGame();
-            return;
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException | InvalidActionException e) {
-            gameManager.addToGameSummary(GameManager.formatErrorMessage(player.getNicknameToken() + " made an invalid action!"));
-            player.deactivate(player.getNicknameToken() + " made an invalid action.");
-            player.setScore(-1);
-            gameManager.endGame();
-            return;
         }
 
-        if (board.hasPlayerWon(currentPlayer.getIndex())) {
-            gameManager.getPlayer(currentPlayer.getIndex()).setScore(gameManager.getPlayer(currentPlayer.getIndex()).getScore() + 1);
-            gameManager.endGame();
-        } else {
-            currentPlayer = gameManager.getPlayer(currentPlayer.getIndex() ^ 1);
-        }
+        currentPlayer = getNextActivePlayer(player.getIndex());
     }
 
     void sendInputs(int turn) {
         Player player = gameManager.getPlayer(currentPlayer.getIndex());
 
-        if (turn < 3) {
-            // Color
-            player.sendInputLine(player.getIndex() == 0 ? "w" : "b");
+        if (turn < gameManager.getPlayerCount() + 1) {
+            // Id
+            player.sendInputLine(String.valueOf("rgb".charAt(player.getIndex())));
         }
 
         // Board
@@ -139,7 +143,7 @@ public class Referee extends AbstractReferee {
             for (int x = 0; x < board.columns(); ++x) {
                 Square square = board.squares[board.rows() - y - 1][x];
                 if (square.piece != null) {
-                    s += square.piece.owner == 0 ? 'w' : 'b';
+                    s += "rgb".charAt(square.piece.owner);
                 } else if (square.free) {
                     s += ".";
                 } else {
@@ -149,8 +153,6 @@ public class Referee extends AbstractReferee {
             player.sendInputLine(s);
         }
 
-        // Last action
-        player.sendInputLine(lastAction);
         // Number of actions
         ArrayList<Action> actions = board.getLegalActions(player.getIndex());
         actions.sort(Comparator.comparing(Action::toString));
@@ -161,25 +163,21 @@ public class Referee extends AbstractReferee {
 
     @Override
     public void onEnd() {
-        int[] scores = { gameManager.getPlayer(0).getScore(), gameManager.getPlayer(1).getScore() };
-        String[] text = new String[2];
-        if(scores[0] > scores[1]) {
-            gameManager.addToGameSummary(gameManager.formatErrorMessage(gameManager.getPlayer(0).getNicknameToken() + " won"));
-            gameManager.addTooltip(gameManager.getPlayer(0), gameManager.getPlayer(0).getNicknameToken() + " won");
-            text[0] = "Won";
-            text[1] = "Lost";
-        } else if(scores[0] < scores[1]) {
-            gameManager.addToGameSummary(gameManager.formatErrorMessage(gameManager.getPlayer(1).getNicknameToken() + " won"));
-            gameManager.addTooltip(gameManager.getPlayer(1), gameManager.getPlayer(1).getNicknameToken() + " won");
-            text[0] = "Lost";
-            text[1] = "Won";
-        } else {
-        gameManager.addToGameSummary(gameManager.formatErrorMessage("Game is drawn"));
-        gameManager.addTooltip(gameManager.getPlayer(1), "Draw");
-        text[0] = "Draw";
-        text[1] = "Draw";
-    }
-
-        endScreenModule.setScores(scores, text);
+        int[] scores = new int[gameManager.getPlayerCount()];
+        for (int i = 0; i < gameManager.getPlayerCount(); i++) {
+            scores[i] = gameManager.getPlayer(i).getScore();
+        }
+        endScreenModule.setScores(scores);
    }
+    public Player getNextActivePlayer(int currentId) {
+
+        int nextIdPlayer = ((currentId + 1) % gameManager.getPlayerCount());
+        for (int i = 1; i <= gameManager.getPlayerCount(); i++) {
+            int id = (currentId + i) % gameManager.getPlayerCount();
+            Player player = gameManager.getPlayer(id);
+
+            if (player.isActive()) return player;
+        }
+        return null;
+    }
 }

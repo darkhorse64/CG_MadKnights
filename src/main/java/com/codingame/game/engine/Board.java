@@ -18,7 +18,7 @@ public class Board {
         return Columns;
     }
 
-    public Board(long seed) {
+    public Board(int nbPlayers, long seed) {
         squares = new Square[Rows][Columns];
         pieces = new ArrayList<>();
 
@@ -29,10 +29,15 @@ public class Board {
         }
 
         Random rng = new Random(seed);
-        int x = rng.nextInt(Columns);
-        int y = rng.nextInt(Rows);
-        pieces.add(squares[x][y].setUnit(0));
-        pieces.add(squares[Columns-x-1][Rows-y-1].setUnit(1));
+        for (int i = 0; i < nbPlayers; i++) {
+            int x,y;
+
+            do {
+                x = rng.nextInt(Columns);
+                y = rng.nextInt(Rows);
+            } while (!squares[x][y].free);
+            pieces.add(squares[x][y].setUnit(i));
+        }
    }
 
     boolean isInside(int x, int y) {

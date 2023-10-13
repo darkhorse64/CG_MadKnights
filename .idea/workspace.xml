@@ -6,8 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="f3833457-5f9f-4ebb-8ba6-7021dd4a7dc5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/config/Boss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/statement_en.html" beforeDir="false" afterPath="$PROJECT_DIR$/config/statement_en.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/statement_fr.html" beforeDir="false" afterPath="$PROJECT_DIR$/config/statement_fr.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/stub.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/stub.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/Referee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/engine/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/engine/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/ui/PlayerUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/ui/PlayerUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codingame/game/ui/Viewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codingame/game/ui/Viewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/assets/b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/assets/w.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/demo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Agent1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Agent1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +85,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/codingame/game/engine/Board.java</url>
           <line>17</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/codingame/game/engine/Board.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/codingame/game/ui/Viewer.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/main/java/com/codingame/game/ui/BoardUI.java</url>

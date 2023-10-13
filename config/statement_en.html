@@ -7,7 +7,7 @@
         <span>The Game</span>
       </h1>
       <div class="statement-goal-content">
-        <p>This is an implementation of the board game <a href="https://github.com/udacity/cd0349-adversarial-search">Knight Isolation</a>, a Udacity model game.</p>
+        <p>This game is strongly inspired from <a href="https://github.com/udacity/cd0349-adversarial-search">Knight Isolation</a>, a Udacity model game.</p>
         <p>Click <a href="https://github.com/darkhorse64/CG_MadKnights">here</a> for the referee.</p>
       </div>
     </div>
@@ -18,14 +18,14 @@
           <span>Rules</span>
       </h1>
       <div class="statement-rules-content">
-          <p>The game is played on a 8x8 chess board with two players. Each player has one single piece: a knight. The goal of the game is to "isolate" the opponent knight.</p>
-          <p>Whenever a knight occupies a square, that square becomes unavailable for the remainder of the game. An open square available for a knight to move into is called a "liberty". The first player with no remaining liberties for their piece loses the game, and their opponent is declared the winner.</p>          
-         <p>The initial positions of the pieces are random but symmetric with respect to the board center.</p>
+          <p>The game is played on a 8x8 chess board with three players: Red, Green, Blue. Each player has one single piece: a knight. The goal of the game is to "isolate" the opponent knights.</p>
+          <p>Whenever a knight occupies a square, that square becomes unavailable for the remainder of the game. An open square available for a knight to move into is called a "liberty". A player with no remaining liberties for their piece during their turn leaves the game. Therefore, the last player to move wins the game.</p>          
+         <p>The initial positions of the pieces are random.</p>
 
           <strong>How to play: </strong>
           <p></p>
-          <p>White starts the game. Each player alternate taking turns moving their knight to an available square. Knights can move to any open square that is 2-rows and 1-column or 2-columns and 1-row away from their current position on the board.</p>
-          <p>The game ends when one player has no available moves.</p>
+          <p>Red starts the game, then Green, then Blue. Each player alternate taking turns moving their knight to an available square. Knights can move to any open square that is 2-rows and 1-column or 2-columns and 1-row away from their current position on the board.</p>
+          <p>The game ends when only one player remains.</p>
           <strong>Ending a turn: </strong>
           <ul>
             <li>A bot must output the destination coordinates of its piece. Coordinates are expressed in chess notation e.g. <const>e3</const></li>
@@ -36,7 +36,7 @@
               <li>If the destination square is not available,</li>
               <li>If the move is not a knight move,</li>
           </ul>
-          <p>the game will end and the other player will win.</p>
+          <p>the player leaves the game.</p>
     </div>
   </div>
 
@@ -90,17 +90,14 @@
     <div class="blk">
       <div class="title">Initial input</div>
       <div class="text">
-          <span class="statement-lineno">One line</span>: <var>color</var></span>: the color of your unique piece (<const>w</const>: white, <const>b</const>: black).
+          <span class="statement-lineno">One line</span>: <var>color</var></span>: your piece color (<const>r</const>: red, <const>g</const>: green, <const>b</const>: blue).
       </div>
     </div>
 
     <div class="blk">
       <div class="title">Input for one game turn</div>
       <div class="text">
-        <span class="statement-lineno">First <const>8</const> lines</span>: <var>line</var>: a string of characters representing one horizontal row of the grid, top to bottom. (<const>.</const>: empty, <const>#</const>: blocked, <const>w</const>: white, <const>b</const>: black).
-        <br>
-        <span class="statement-lineno">Next line: <var>lastMove</var></span>: the last move by the opponent (<const>null</const> if it's the first turn).
-        </br>
+        <span class="statement-lineno">First <const>8</const> lines</span>: <var>line</var>: a string of characters representing one horizontal row of the grid, top to bottom. (<const>.</const>: empty, <const>#</const>: blocked, <const>r</const>: red, <const>g</const>: green, <const>b</const>: blue).
         <br>
          <span class="statement-lineno">Next line: <var>moveCount</var></span>: the number of legal moves for this turn.
         </br>
