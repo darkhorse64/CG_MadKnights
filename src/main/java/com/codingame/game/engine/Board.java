@@ -35,7 +35,7 @@ public class Board {
             do {
                 x = rng.nextInt(Columns);
                 y = rng.nextInt(Rows);
-            } while (!squares[x][y].free);
+            } while (!squares[x][y].free || x < 1 || x > Rows - 2 || y < 1 || y > Columns - 2);
             pieces.add(squares[x][y].setUnit(i));
         }
    }

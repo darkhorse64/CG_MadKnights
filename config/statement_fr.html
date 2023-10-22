@@ -20,7 +20,7 @@
       <div class="statement-rules-content">
           <p>Le jeu se déroule sur un échiquier de 8x8 cases avec trois joueurs: Rouge, Vert , Bleu. Chaque joueur dispose d'une unique pièce: un Cavalier (une des pièces du jeu d'Echecs). Le but du jeu est d'"isoler" le Cavalier adverse.</p>
           <p>Quand un Cavalier occupe une case, celle-ci devient indisponible pour le reste de la partie. Les cases libres accessibles directement par un Cavalier sont des "libertés". Un joueur dont la pièce n'a plus de libertés pendant son tour quitte la partie. Le dernier joueur à bouger gagne donc la partie.</p>          
-         <p>La position initiale des pièces est aléatoire.</p>
+         <p>La position initiale des pièces est aléatoire mais les bords de l'échiquier sont exclus pour avoir des parties plus équilibrées.</p>
           <strong>Comment jouer: </strong>
           <p></p>
           Rouge commence la partie, puis Vert, puis Bleu. Chaque joueur bouge sa pièce à son tour sur une case disponible, en respectant les règles de déplacement d'un Cavalier aux Echecs.
@@ -96,7 +96,9 @@
     <div class="blk">
       <div class="title">Entrées pour chaque tour de jeu</div>
       <div class="text">
-        <span class="statement-lineno"><var>8</var> premières lignes</span>: <var>line</var>: une chaîne de caractères représentant une ligne du plateau, de haut en bas. (<const>.</const>: vide, <const>#</const>: indisponible, <const>r</const>: rouge, <const>g</const>: vert, <const>b</const>: bleu).
+        <span class="statement-lineno"><const>3</const> premières lignes</span>: <var>player</var>: la couleur du joueur (<const>r</const>, <const>g</const> or <const>b</const>), <var>status</var>: <const>0</const> (le joueur a perdu), <const>1</const> (le joueur est actif), <var>lastMove</var>: le dernier coup joué ou <const>null</const> si le joueur n'a pas encore joué.
+        <br>
+        <span class="statement-lineno"><const>8</const> lignes suivantes</span>: <var>line</var>: une chaîne de caractères représentant une ligne du plateau, de haut en bas. (<const>.</const>: disponible, <const>#</const>: indisponible, <const>r</const>: rouge, <const>g</const>: vert, <const>b</const>: bleu).
         <br>
          <span class="statement-lineno">Ligne suivante</span>: <var>moveCount</var>: le nombre de coups légaux pour ce tour.
         </br>

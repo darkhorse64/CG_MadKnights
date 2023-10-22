@@ -10,4 +10,6 @@ public class Player extends AbstractMultiplayerPlayer {
         // Most of the time the value is 1.
         return 1;
     }
+
+    public String lastAction = "null";
 }

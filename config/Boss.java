@@ -14,6 +14,11 @@ class Player {
 
         // game loop
         while (true) {
+            for (int i = 0; i < 3; i++) {
+                String player = in.next(); // player color
+                int status = in.nextInt(); // 0: player has left the game, 1: player is alive
+                String lastMove = in.next(); // last move played ("null" if no move has been played)
+            }
             for (int i = 0; i < 8; i++) {
                 String line = in.next(); // horizontal row
             }

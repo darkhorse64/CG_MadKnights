@@ -20,7 +20,7 @@
       <div class="statement-rules-content">
           <p>The game is played on a 8x8 chess board with three players: Red, Green, Blue. Each player has one single piece: a knight. The goal of the game is to "isolate" the opponent knights.</p>
           <p>Whenever a knight occupies a square, that square becomes unavailable for the remainder of the game. An open square available for a knight to move into is called a "liberty". A player with no remaining liberties for their piece during their turn leaves the game. Therefore, the last player to move wins the game.</p>          
-         <p>The initial positions of the pieces are random.</p>
+         <p>The initial positions of the pieces are random but borders are excluded to ensure equal chances for all players.</p>
 
           <strong>How to play: </strong>
           <p></p>
@@ -90,14 +90,16 @@
     <div class="blk">
       <div class="title">Initial input</div>
       <div class="text">
-          <span class="statement-lineno">One line</span>: <var>color</var></span>: your piece color (<const>r</const>: red, <const>g</const>: green, <const>b</const>: blue).
+          <span class="statement-lineno">One line</span>: <var>color</var></span>: your piece color (<const>r</const>: red, <const>g</const>: green or <const>b</const>: blue).
       </div>
     </div>
 
     <div class="blk">
       <div class="title">Input for one game turn</div>
       <div class="text">
-        <span class="statement-lineno">First <const>8</const> lines</span>: <var>line</var>: a string of characters representing one horizontal row of the grid, top to bottom. (<const>.</const>: empty, <const>#</const>: blocked, <const>r</const>: red, <const>g</const>: green, <const>b</const>: blue).
+        <span class="statement-lineno">First <const>3</const> lines</span>: <var>player</var>: player color (<const>r</const>, <const>g</const> or <const>b</const>), <var>status</var>: <const>0</const> (player has lost), <const>1</const> (player is alive), <var>lastMove</var>: last move played or <const>null</const>if the player has not yet moved.
+        <br>
+        <span class="statement-lineno">Next <const>8</const> lines</span>: <var>line</var>: a string of characters representing one horizontal row of the grid, top to bottom. (<const>.</const>: open, <const>#</const>: blocked, <const>r</const>: red, <const>g</const>: green, <const>b</const>: blue).
         <br>
          <span class="statement-lineno">Next line: <var>moveCount</var></span>: the number of legal moves for this turn.
         </br>

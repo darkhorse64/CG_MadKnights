@@ -16,6 +16,6 @@ public class Constants {
     public static int turnMaxTime = 100;
     public static final int[] boardColors = new int[]{0xB09673, 0xD2C2A8};
     public static final int backgroundColor = 0x7F7F7F;
-    public static final int[] highlightColors = new int[]{0x7e9ec2, 0x7e9ec2, 0xFF0000};
+    public static final int[] highlightColors = new int[]{0x777777, 0x777777, 0xFF0000};
     public static final double moveTime = 700;
 }
